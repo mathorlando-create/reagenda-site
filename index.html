@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reagenda · agenda online que traz seus clientes de volta</title>
+<meta name="description" content="Agenda online para barbearias, salões, estética e quem atende com hora marcada. O cliente marca pelo link, recebe lembrete no WhatsApp, e o Reagenda mostra quem está na hora de voltar.">
+<meta property="og:title" content="Reagenda · seus clientes sumidos, de volta">
+<meta property="og:description" content="Agenda online com lembrete no WhatsApp e o Retorno: a lista de quem está na hora de voltar, com prova do resultado.">
+<meta property="og:image" content="assets/fotos/mock-retorno-mao.jpg">
+<link rel="icon" href="assets/icone-app.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+@font-face{font-family:Montserrat;font-style:normal;font-weight:400;font-display:swap;src:url(assets/fontes/montserrat-latin-400-normal.woff2) format('woff2')}@font-face{font-family:Montserrat;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fontes/montserrat-latin-600-normal.woff2) format('woff2')}@font-face{font-family:Montserrat;font-style:normal;font-weight:700;font-display:swap;src:url(assets/fontes/montserrat-latin-700-normal.woff2) format('woff2')}@font-face{font-family:Montserrat;font-style:normal;font-weight:800;font-display:swap;src:url(assets/fontes/montserrat-latin-800-normal.woff2) format('woff2')}
+:root{--tinta:#071A1F;--tinta-2:#0B2F36;--creme:#F2F0EA;--papel:#FBFAF7;--linha:#CFCABE;--apoio:#4A6268;--apoio-escuro:#A9C0BD;--violeta:#8B5CFF;--primaria:#6D3FE6;--neon:#02CEC3;--linha-escura:#24434A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--creme);color:var(--tinta);font-family:Montserrat,system-ui,sans-serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.w{max-width:1200px;margin:0 auto;padding:0 32px}
+h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.02em}
+h1{font-size:clamp(42px,6vw,80px);line-height:1.02;letter-spacing:-.03em}
+h2{font-size:clamp(32px,4vw,52px);line-height:1.08}
+h3{font-size:22px;line-height:1.25;letter-spacing:-.01em}
+p{margin:0}
+.apoio{color:var(--apoio)}
+.escuro{background:var(--tinta);color:var(--creme)}
+.escuro .apoio{color:var(--apoio-escuro)}
+.papel{background:var(--papel)}
+.bt{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 26px;border-radius:12px;font-weight:700;font-size:17px;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+.bt.pri{background:var(--primaria);color:#fff}
+.bt.pri:hover{background:#5B31CF}
+.bt.sec{border:1.5px solid currentColor;background:transparent}
+.escuro .bt.sec{color:var(--creme);border-color:#3E6670}
+/* topo */
+header.topo{position:sticky;top:0;z-index:10;background:var(--tinta);border-bottom:1px solid var(--linha-escura)}
+header.topo .w{display:flex;align-items:center;justify-content:space-between;height:76px;gap:24px}
+header.topo img{height:34px}
+header.topo nav{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:600}
+header.topo nav a{text-decoration:none;color:var(--apoio-escuro)}
+header.topo nav a:hover{color:var(--creme)}
+header.topo nav .bt{height:44px;padding:0 18px;font-size:15px;color:#fff;white-space:nowrap}
+/* hero */
+.hero{padding:64px 0 88px;overflow:hidden}
+.hero .w{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero .txt{display:flex;flex-direction:column;gap:28px}
+.hero .txt p{font-size:21px;max-width:540px}
+.hero .acoes{display:flex;gap:12px;flex-wrap:wrap}
+.hero .nota{font-size:14px}
+.hero figure{margin:0;align-self:stretch;display:flex;align-items:flex-end}
+.hero figure img{width:100%;aspect-ratio:4/4.3;object-fit:cover;object-position:86% 55%;border-radius:4px}
+/* blocos */
+section{padding:112px 0}
+.cab{display:flex;justify-content:space-between;font-size:15px;font-weight:600;color:var(--apoio);padding-bottom:16px;border-bottom:2px solid var(--tinta);margin-bottom:56px}
+.escuro .cab{color:var(--apoio-escuro);border-bottom-color:var(--linha-escura)}
+.grade{display:grid;grid-template-columns:5fr 7fr;gap:80px}
+.lista .item{border-top:1.5px solid var(--linha);padding:26px 0 30px;display:grid;grid-template-columns:56px 1fr;gap:8px 16px}
+.lista .item:last-child{border-bottom:1.5px solid var(--linha)}
+.escuro .lista .item{border-color:var(--linha-escura)}
+.lista .n{font-size:15px;font-weight:600;color:var(--apoio);padding-top:4px}
+.escuro .lista .n{color:var(--apoio-escuro)}
+.lista .item p{grid-column:2;color:var(--apoio)}
+.escuro .lista .item p{color:var(--apoio-escuro)}
+.foto-larga{margin:64px 0 0}
+.foto-larga img{width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:4px}
+.legenda{font-size:14px;color:var(--apoio);margin-top:12px}
+.escuro .legenda{color:var(--apoio-escuro)}
+.prova{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1.5px solid var(--linha-escura);border-bottom:1.5px solid var(--linha-escura);margin-top:56px}
+.prova div{padding:28px 28px 30px 0}
+.prova div+div{padding-left:28px;border-left:1.5px solid var(--linha-escura)}
+.prova b{display:block;font-size:44px;letter-spacing:-.02em;line-height:1.1}
+.prova b.neon{color:var(--neon)}
+.prova span{font-size:15px;color:var(--apoio-escuro)}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.dupla img{width:100%;border-radius:4px}
+.dupla .alta img{aspect-ratio:4/5;object-fit:cover}
+.segs{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px}
+.segs figure{margin:0}
+.segs img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
+.segs figcaption{font-size:17px;font-weight:600;padding-top:14px;border-top:0}
+.precos{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--tinta)}
+.precos > div{padding:32px 32px 36px 0;display:flex;flex-direction:column;gap:12px}
+.precos > div+div{padding-left:32px;border-left:1.5px solid var(--linha)}
+.precos .v{font-size:48px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.precos .v small{font-size:17px;font-weight:600;color:var(--apoio);letter-spacing:0}
+.precos .fund .nome{color:var(--primaria)}
+.nome{font-size:15px;font-weight:700}
+details{border-top:1.5px solid var(--linha);padding:22px 0}
+details:last-child{border-bottom:1.5px solid var(--linha)}
+summary{cursor:pointer;font-weight:700;font-size:20px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:400;font-size:26px;line-height:1;color:var(--apoio)}
+details[open] summary::after{content:"–"}
+details p{margin-top:12px;color:var(--apoio);max-width:720px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+label{display:flex;flex-direction:column;gap:8px;font-size:15px;font-weight:600}
+input,select{height:54px;border-radius:10px;border:1.5px solid var(--linha-escura);background:var(--tinta-2);color:var(--creme);padding:0 14px;font:inherit;font-size:17px}
+input:focus,select:focus{outline:2px solid var(--violeta);outline-offset:1px}
+.cons{grid-column:1/-1;flex-direction:row;align-items:flex-start;gap:12px;font-weight:400;color:var(--apoio-escuro)}
+.cons input{height:22px;width:22px;flex:none;accent-color:var(--primaria)}
+form .bt{grid-column:1/-1;justify-self:start}
+#ok{grid-column:1/-1;font-weight:600;color:var(--neon)}
+footer{padding:48px 0 56px;border-top:1px solid var(--linha-escura);font-size:14px}
+footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--apoio-escuro)}
+footer img{height:26px;margin-bottom:12px}
+@media (max-width:900px){
+ .w{padding:0 20px}
+ header.topo nav a:not(.bt){display:none}
+ header.topo img{height:28px}
+ .hero{padding:44px 0 64px}
+ header.topo nav .bt{height:40px;padding:0 14px;font-size:14px}
+ .hero .w,.grade,.dupla{grid-template-columns:1fr;gap:40px}
+ .hero .txt{padding-bottom:0}
+ section{padding:80px 0}
+ .prova{grid-template-columns:1fr} .prova div+div{padding-left:0;border-left:0;border-top:1.5px solid var(--linha-escura)}
+ .segs{grid-template-columns:1fr 1fr;gap:28px 16px}
+ .precos{grid-template-columns:1fr} .precos > div+div{padding-left:0;border-left:0;border-top:1.5px solid var(--linha)}
+ form{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="topo"><div class="w">
+<a href="./" aria-label="Reagenda, início"><img src="assets/horizontal-creme.svg" alt="Reagenda"></a>
+<nav aria-label="Principal"><a href="#como">Como funciona</a><a href="#retorno">Retorno</a><a href="#preco">Preço</a><a href="#duvidas">Dúvidas</a><a href="app/">Ver o app</a><a class="bt pri" href="#fundador">Quero ser fundador</a></nav>
+</div></header>
+
+<div class="hero escuro"><div class="w">
+<div class="txt">
+<h1>Seus clientes sumidos, de volta.</h1>
+<p class="apoio">O cliente marca pelo seu link, recebe o lembrete no WhatsApp, e toda segunda o Reagenda mostra quem está na hora de voltar, com a mensagem pronta.</p>
+<div class="acoes"><a class="bt pri" href="#fundador">Quero ser fundador</a><a class="bt sec" href="app/">Ver o app funcionando</a></div>
+<span class="nota apoio">Funciona no navegador do celular e do computador. Seu cliente não baixa nada.</span>
+</div>
+<figure><img src="assets/fotos/mock-retorno-mao.jpg" alt="Celular na mão mostrando a tela Retorno do Reagenda com clientes para chamar" width="1600" height="900"></figure>
+</div></div>
+
+<section id="como"><div class="w">
+<p class="cab"><span>Como funciona</span><span>3 passos</span></p>
+<div class="grade">
+<div><h2>O cliente não some. Ele esquece de marcar.</h2></div>
+<div class="lista">
+<div class="item"><span class="n">01</span><h3>Configure em 5 minutos</h3><p>Serviços, preços e horários já vêm preenchidos para o seu tipo de negócio. Você só ajusta.</p></div>
+<div class="item"><span class="n">02</span><h3>Compartilhe seu link</h3><p>Na bio do Instagram, no WhatsApp e no balcão. O cliente vê só horários livres e marca em três passos.</p></div>
+<div class="item"><span class="n">03</span><h3>Traga quem sumiu</h3><p>Toda segunda, a lista de quem passou do tempo de voltar. Um toque abre o WhatsApp com a mensagem pronta.</p></div>
+</div>
+</div>
+<figure class="foto-larga"><img src="assets/fotos/mock-painel-notebook.jpg" alt="Notebook numa mesa de trabalho com o painel do Reagenda aberto" loading="lazy"><figcaption class="legenda">Painel no computador: faturamento, ocupação, faltas e o resultado do Retorno. Dados fictícios.</figcaption></figure>
+</div></section>
+
+<section id="retorno" class="escuro"><div class="w">
+<p class="cab"><span>Retorno</span><span>O diferencial</span></p>
+<div class="grade">
+<div><h2>Não é só quantas mensagens saíram. É quantos voltaram por causa delas.</h2></div>
+<div class="lista">
+<div class="item"><span class="n">01</span><h3>O Reagenda aprende o ritmo de cada cliente</h3><p>Quem corta a cada 21 dias, quem volta a cada dois meses. Passou do tempo, entra na lista.</p></div>
+<div class="item"><span class="n">02</span><h3>Uma parte fica sem mensagem, sorteada</h3><p>É o grupo de comparação. Ele mostra quantos voltariam de qualquer jeito.</p></div>
+<div class="item"><span class="n">03</span><h3>A diferença é o que o Reagenda trouxe</h3><p>Em clientes e em reais, numa frase simples, todo mês.</p></div>
+</div>
+</div>
+<div class="prova">
+<div><b>11</b><span>clientes voltaram depois da mensagem</span></div>
+<div><b>5</b><span>voltariam sem ela, pelo grupo de comparação</span></div>
+<div><b class="neon">+6 · R$ 420</b><span>trazidos pelo Reagenda no mês</span></div>
+</div>
+<p class="legenda">Exemplo com dados fictícios de uma barbearia com 214 clientes.</p>
+</div></section>
+
+<section><div class="w">
+<p class="cab"><span>No dia a dia</span><span>Celular e tablet</span></p>
+<div class="dupla">
+<div class="alta"><img src="assets/fotos/mock-hoje-sala.jpg" alt="Celular com a agenda do dia aberta no Reagenda" loading="lazy"></div>
+<div class="lista">
+<h2 style="margin-bottom:40px">Tudo o que a recepção precisa, no polegar.</h2>
+<div class="item"><span class="n">01</span><h3>Agenda do dia</h3><p>O próximo cliente em destaque, o caixa do dia no topo, encaixe com um toque.</p></div>
+<div class="item"><span class="n">02</span><h3>Lembrete que confirma</h3><p>Confirmação pelo WhatsApp na véspera. Menos falta, sem ligar para ninguém.</p></div>
+<div class="item"><span class="n">03</span><h3>Ficha de cada cliente</h3><p>Quanto gasta, de quanto em quanto tempo volta e quando deveria ter voltado.</p></div>
+</div>
+</div>
+<div class="dupla" style="margin-top:96px">
+<div class="lista">
+<h2 style="margin-bottom:40px">Seu cliente marca sozinho.</h2>
+<div class="item"><span class="n">01</span><h3>Sem instalar nada</h3><p>Abre pelo link do Instagram ou do WhatsApp, escolhe serviço, horário e pronto.</p></div>
+<div class="item"><span class="n">02</span><h3>Remarca dentro do prazo</h3><p>Até 2 horas antes, sem precisar mandar mensagem para você.</p></div>
+</div>
+<div class="alta"><img src="assets/fotos/mock-link-tablet.jpg" alt="Tablet no balcão com a página de agendamento do Reagenda" loading="lazy"></div>
+</div>
+</div></section>
+
+<section class="papel"><div class="w">
+<p class="cab"><span>Para quem</span><span>Solo ou equipe de até 4 pessoas</span></p>
+<h2 style="max-width:820px;margin-bottom:56px">Para quem vive de horário marcado e de cliente que volta.</h2>
+<div class="segs">
+<figure><img src="assets/fotos/barbeiro-porta.jpg" alt="Barbearias" loading="lazy"><figcaption>Barbearias</figcaption></figure><figure><img src="assets/fotos/esteticista.jpg" alt="Estética" loading="lazy"><figcaption>Estética</figcaption></figure><figure><img src="assets/fotos/lash-designer.jpg" alt="Cílios e sobrancelhas" loading="lazy"><figcaption>Cílios e sobrancelhas</figcaption></figure><figure><img src="assets/fotos/nutricionista.jpg" alt="Nutrição e saúde" loading="lazy"><figcaption>Nutrição e saúde</figcaption></figure><figure><img src="assets/fotos/personal-trainer.jpg" alt="Personal trainer" loading="lazy"><figcaption>Personal trainer</figcaption></figure><figure><img src="assets/fotos/tatuadora.jpg" alt="Tatuagem" loading="lazy"><figcaption>Tatuagem</figcaption></figure>
+</div>
+</div></section>
+
+<section id="preco"><div class="w">
+<p class="cab"><span>Preço</span><span>Sem fidelidade</span></p>
+<h2 style="margin-bottom:56px">Preço simples. 14 dias grátis, sem cartão.</h2>
+<div class="precos">
+<div><span class="nome">Solo</span><span class="v">R$ 39,90 <small>/mês</small></span><p class="apoio">1 profissional. Agenda, link, lembretes, Retorno e painel.</p></div>
+<div><span class="nome">Equipe</span><span class="v">R$ 69,90 <small>/mês</small></span><p class="apoio">Até 4 profissionais, permissões, comissão e Google Agenda.</p></div>
+<div class="fund"><span class="nome">Fundador · 5 vagas</span><span class="v">R$ 29,90 <small>/mês</small></span><p class="apoio">Plano Solo com o preço travado por 12 meses para as primeiras barbearias.</p><a class="bt pri" href="#fundador" style="align-self:flex-start;margin-top:8px">Quero minha vaga</a></div>
+</div>
+</div></section>
+
+<section id="duvidas" class="papel"><div class="w">
+<p class="cab"><span>Dúvidas</span><span>7 perguntas</span></p>
+<div class="grade"><div><h2>Antes de começar.</h2></div><div>
+<details><summary>Preciso baixar app na loja?</summary><p>Não. O Reagenda abre no navegador e pode ser instalado na tela de início do celular.</p></details><details><summary>Meu cliente precisa ter o app?</summary><p>Não. Ele marca pelo seu link e recebe o lembrete pelo WhatsApp.</p></details><details><summary>As mensagens saem de qual número?</summary><p>Do seu WhatsApp. Você toca em enviar e a mensagem abre pronta, sem custo por mensagem.</p></details><details><summary>Como vocês sabem que o cliente voltou por causa da mensagem?</summary><p>Uma parte dos clientes atrasados fica sem mensagem, sorteada. Comparando os dois grupos, o Reagenda mostra quantos voltaram a mais por causa do lembrete.</p></details><details><summary>E se o cliente não quiser receber?</summary><p>Ele responde SAIR e não entra mais na lista.</p></details><details><summary>Onde ficam os dados?</summary><p>Em servidor no Brasil. Os dados dos seus clientes são seus e podem ser exportados quando você quiser.</p></details><details><summary>Já uso outro app de agenda.</summary><p>Dá para importar seus clientes por planilha e começar pelo Retorno.</p></details>
+</div></div>
+</div></section>
+
+<section id="fundador" class="escuro"><div class="w">
+<p class="cab"><span>Lista de fundadores</span><span>5 vagas</span></p>
+<div class="grade">
+<div style="display:flex;flex-direction:column;gap:20px"><h2>Entre na lista de fundadores.</h2><p class="apoio">Avisamos pelo WhatsApp quando sua vaga abrir. São 5 vagas a R$ 29,90 por mês, com o preço travado por 12 meses.</p></div>
+<form id="f" onsubmit="event.preventDefault();document.getElementById('ok').hidden=false;this.querySelector('button').disabled=true;">
+<label>Seu nome<input name="nome" required autocomplete="name"></label>
+<label>WhatsApp<input name="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="(51) 9 0000-0000"></label>
+<label>Tipo de negócio<select name="tipo"><option>Barbearia</option><option>Salão</option><option>Estética, unhas ou cílios</option><option>Saúde e bem-estar</option><option>Outro</option></select></label>
+<label>Cidade<input name="cidade" autocomplete="address-level2"></label>
+<label class="cons"><input type="checkbox" required>Aceito receber contato do Reagenda pelo WhatsApp sobre a vaga de fundador. Meus dados ficam só para isso.</label>
+<button class="bt pri" type="submit">Quero minha vaga</button>
+<p id="ok" hidden>Recebido. Esta é a versão de prévia do site: o envio real da lista entra junto com o lançamento.</p>
+</form>
+</div>
+</div></section>
+
+<footer class="escuro"><div class="w">
+<div><img src="assets/horizontal-creme.svg" alt="Reagenda"><br>Um produto ORLANDO Marketing &amp; Branding · Porto Alegre</div>
+<div>Fotos: Magnific · Dados de exemplo fictícios<br><a href="app/">Demonstração do app</a></div>
+</div></footer>
+</body>
+</html>
